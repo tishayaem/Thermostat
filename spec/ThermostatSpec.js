@@ -20,7 +20,7 @@ describe ("Thermostat", function(){
   });
 
   it ("is in the medium heat range on initialization", function(){
-    expect(thermostat.isMedium).toBeTruthy();
+    expect(thermostat.energyUsage()).toEqual('medium-usage');
   });
 
   describe ("up", function(){
@@ -51,30 +51,31 @@ describe ("Thermostat", function(){
 
   });
 
-  describe ("changePowerMode", function(){
+  describe ("switchPowerModeOff", function(){
 
     it("changes the powerSaveMode off if its on", function(){
-      thermostat.changePowerMode();
+      thermostat.switchPowerModeOff();
       expect(thermostat.powerSaveMode).toBeFalsy();
     });
 
-    it("changes the powerSaveMode back on if it's off", function(){
-      thermostat.changePowerMode();
-      thermostat.changePowerMode();
+  });
+
+  describe ("switchPowerModeOn", function(){
+
+    it("changes the powerSaveMode on if it is off", function(){
+      thermostat.switchPowerModeOn();
       expect(thermostat.powerSaveMode).toBeTruthy();
     });
-
 
   });
 
   describe ("powerSaveMode on", function(){
 
     it("can raise the temperature up to 32", function(){
-      thermostat.changePowerMode();
+      thermostat.switchPowerModeOff();
       thermostat.temperature = 32;
       expect(function(){thermostat.up();}).toThrow('Cannot raise above 32');
     });
-
 
   });
 
@@ -87,24 +88,21 @@ describe ("Thermostat", function(){
 
   });
 
-  describe("heatRange", function(){
+  describe("energyUsage", function(){
 
     it("returns high if temperature is >= 25 ", function(){
       thermostat.temperature = 30;
-      thermostat.heatRange();
-      expect(thermostat.isHigh).toBeTruthy();
+      expect(thermostat.energyUsage()).toEqual('high-usage');
     });
 
     it("returns medium if temperature is < 20 and >= 18 ", function(){
       thermostat.temperature = 20;
-      thermostat.heatRange();
-      expect(thermostat.isMedium).toBeTruthy();
+      expect(thermostat.energyUsage()).toEqual('medium-usage');
     });
 
     it("returns high if temperature is >= 25 ", function(){
       thermostat.temperature = 16;
-      thermostat.heatRange();
-      expect(thermostat.isLow).toBeTruthy();
+      expect(thermostat.energyUsage()).toEqual('low-usage');
     });
 
   });
