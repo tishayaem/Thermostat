@@ -1,0 +1,28 @@
+body {
+  background: #485275);
+}
+#controls{
+  text-align: center;
+
+  margin: 100px;
+
+  /*position: relative;
+  resize: vertical;*/
+  overflow: auto;
+}
+
+#temperature{
+  text-align: center;
+  font-family: helvetica;
+  font-size: 70px;
+  font-weight: 100;
+  color: #bb3b3f;
+}
+
+#powermode{
+  text-align: center;
+  font-family: helvetica;
+  color: #281e19
+}
+
+#reset {}
