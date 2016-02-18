@@ -2,10 +2,6 @@ $( document ).ready(function() {
 
   var thermostat = new Thermostat();
 
-  $('#temperature').thermometer( {
-  height: 300,
-  pathToSVG: 'bower_components/jquery.thermometer/svg/thermo-bottom.svg'
-} );
 
   $('#temperature').text(thermostat.temperature);
 
@@ -34,13 +30,5 @@ $( document ).ready(function() {
     thermostat.switchPowerModeOff();
     $('#power-saving-status').text(thermostat.powerMode());
   });
-
-
-
-  // $('button#')
-
-
-
-
 
 });
