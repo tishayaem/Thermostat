@@ -8,11 +8,17 @@ describe('Thermostat', function(){
     expect(thermostat.getCurrentTemperature()).toEqual(20);
   });
 it('increases the temperature when pushing up button', function(){
-  thermostat.increaseTemperature();
-  expect(thermost.getCurrentTemperature()).toEqual(21);
+  thermostat.up();
+  expect(thermostat.getCurrentTemperature()).toEqual(21);
 });
 it('increases the temperature when pushing up button', function(){
   thermostat.down();
-  expect(thermost.getCurrentTemperature()).toEqual(19);
+  expect(thermostat.getCurrentTemperature()).toEqual(19);
+});
+it('can go down to a minimum 10 degrees', function() {
+  for (var i = 0; i < 11; i++) {
+    thermostat.down()
+  }
+  expect(thermostat.getCurrentTemperature()).toEqual(10);
 });
 });
